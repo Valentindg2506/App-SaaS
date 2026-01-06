@@ -40,12 +40,29 @@ $actual = $resultado->fetch_assoc();
             elseif (substr($campo, -3) == '_id') {
                 $tabla_ref = substr($campo, 0, -3);
                 if($tabla_ref == 'usuario') $tabla_ref = 'usuario_sistema';
+                
+                // LOGICA EMPLEADO_ID
+                if($campo == 'empleado_id'){
+                    $tabla_ref = 'usuario_sistema';
+                    if($_SESSION['usuario_rol'] == 'empleado'){
+                        // Solo lectura oculto
+                        echo "<input type='hidden' name='$campo' value='$val'>";
+                        continue;
+                    }
+                }
                
                 $sql_ref = "SELECT * FROM $tabla_ref LIMIT 100";
+                
+                // FILTRO SOLO EMPLEADOS
+                if($campo == 'empleado_id'){
+                    $sql_ref = "SELECT * FROM usuario_sistema WHERE rol = 'empleado' ORDER BY nombre_completo ASC";
+                }
+
                 $res_ref = $conexion->query($sql_ref);
                 
                 if($res_ref){
                    echo "<select name='$campo' style='width:100%; padding:10px; border:1px solid #ddd; border-radius:6px;'>";
+                   echo "<option value=''>-- Sin Asignar --</option>";
                    while($row_ref = $res_ref->fetch_assoc()){
                        $display_text = $row_ref['id']; 
                        foreach(['nombre','titulo','usuario','apellido','razon_social'] as $candidate){

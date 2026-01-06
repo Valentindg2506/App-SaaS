@@ -97,8 +97,9 @@ include "inc/config_roles.php"; // Load permission logic
                 include "controladores/editar.php";
             } else if($_GET['operacion'] == "procesa_editar"){
                 include "controladores/procesa_editar.php";
-            } else if($_GET['operacion'] == "configuracion"){
                 include "controladores/configuracion.php";
+            } else if($_GET['operacion'] == "convertir_prospecto"){
+                include "controladores/convertir_prospecto.php";
             }
         } else if (isset($_GET['tabla'])) {
             include "controladores/read.php";

@@ -41,7 +41,8 @@ function validate_table_name($table) {
         'servicio',
         'aviso',
         'pago',
-        'registro_log'
+        'registro_log',
+        'prospectos'
     ];
     
     if (!in_array($table, $allowed_tables)) {

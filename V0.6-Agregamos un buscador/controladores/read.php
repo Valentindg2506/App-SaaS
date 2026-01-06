@@ -9,7 +9,10 @@ $tabla = $_GET['tabla'];
 $tabla = validate_table_name($tabla);
 
 // --- SEARCH LOGIC ---
-$whereClause = "";
+// --- SEARCH & FILTER LOGIC ---
+$conditions = [];
+
+// A. Filtro de Búsqueda
 $busqueda = "";
 if (isset($_GET['q']) && !empty($_GET['q'])) {
     $busqueda = trim($_GET['q']);
@@ -36,8 +39,23 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
     }
     
     if(count($colsSearch) > 0){
-        $whereClause = " WHERE " . implode(" OR ", $colsSearch);
+        $conditions[] = "(" . implode(" OR ", $colsSearch) . ")";
     }
+}
+
+// B. Filtro de Privacidad (Empleados)
+if(isset($_SESSION['usuario_rol']) && $_SESSION['usuario_rol'] == 'empleado'){
+    // Tablas restringidas
+    if(in_array($tabla, ['cliente', 'prospectos'])){
+        $my_id = $_SESSION['usuario_id'];
+        $conditions[] = "empleado_id = '$my_id'"; 
+    }
+}
+
+// Construir WHERE final
+$whereClause = "";
+if(count($conditions) > 0){
+    $whereClause = " WHERE " . implode(" AND ", $conditions);
 }
 ?>
 
@@ -226,6 +244,21 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
                         }
                     }
 
+                    // FORMATO CASO ESPECIAL: EMPLEADO_ID (Mostrar Nombre)
+                    if($col_name == 'empleado_id'){
+                        if(!empty($valor)){
+                            // Fetch user name (Inefficient but works for read.php generic view)
+                            $res_u = $conexion->query("SELECT nombre_completo, usuario FROM usuario_sistema WHERE id = '$valor'");
+                            if($res_u && $u_row = $res_u->fetch_assoc()){
+                                $valor = !empty($u_row['nombre_completo']) ? $u_row['nombre_completo'] : $u_row['usuario'];
+                            } else {
+                                $valor = "ID: $valor (N/A)";
+                            }
+                        } else {
+                            $valor = "- No Asignado -";
+                        }
+                    }
+
                     // Limitar longitud
                     $texto = strlen($valor) > 50 ? substr($valor,0,50)."..." : $valor;
                     echo "<td>" . htmlspecialchars($texto) . "</td>";
@@ -234,16 +267,28 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
                 // Botones de acción
                 $id = $fila[$pk] ?? ''; // Use Null Coalesce in case PK is weird
                 echo "<td>
-                    <div style='display:flex; gap:5px;'>
-                        <form action='?operacion=eliminar' method='POST' style='display:inline;' onsubmit='return confirm(\"¿Estás seguro de eliminar este registro?\");'>
+                    <div style='display:flex; gap:5px; align-items:center;'>";
+                        
+                if ($tabla == 'prospectos') {
+                    echo "
+                        <form action='?operacion=convertir_prospecto' method='POST' style='margin:0;' onsubmit='return confirm(\"¿Convertir prospecto a cliente?\");'>
+                            <input type='hidden' name='id' value='$id'>
+                            <input type='hidden' name='csrf_token' value='".generate_csrf_token()."'>
+                            <button type='submit' class='btn' style='background:var(--success); color:white; border:1px solid var(--success); padding:0.4rem 0.6rem; font-size:1rem; line-height:1;' title='Convertir a Cliente'>✅</button>
+                        </form>
+                    ";
+                }
+                
+                echo "
+                        <form action='?operacion=eliminar' method='POST' style='margin:0;' onsubmit='return confirm(\"¿Estás seguro de eliminar este registro?\");'>
                             <input type='hidden' name='tabla' value='$tabla'>
                             <input type='hidden' name='id' value='$id'>
                             <input type='hidden' name='pk' value='$pk'>
                             <input type='hidden' name='csrf_token' value='".generate_csrf_token()."'>
-                            <button type='submit' class='btn btn-danger btn-sm'>🗑️</button>
+                            <button type='submit' class='btn btn-danger' style='padding:0.4rem 0.6rem; font-size:1rem; line-height:1;'>🗑️</button>
                         </form>
                         <a href='?operacion=editar&tabla=$tabla&id=$id&pk=$pk' 
-                           class='btn btn-primary btn-sm'>
+                           class='btn btn-primary' style='padding:0.4rem 0.6rem; font-size:1rem; line-height:1;'>
                            ✏️
                         </a>
                     </div>

@@ -30,7 +30,7 @@ $js_events_calendar  = [];
 // ------------------------------------------------
 // 1. DATOS PARA JEFE (Finanzas & Personal)
 // ------------------------------------------------
-if (in_array($rol, ['jefe'])) {
+if (in_array($rol, ['jefe', 'subjefe'])) {
     // Finanzas
     $res_fin = $conexion->query("SELECT DATE_FORMAT(fecha_factura, '%Y-%m') as mes, SUM(total) as total FROM factura GROUP BY mes ORDER BY mes ASC LIMIT 6");
     while($row = $res_fin->fetch_assoc()){
@@ -187,7 +187,7 @@ if (in_array($rol, ['jefe', 'subjefe', 'supervisor'])) {
     <?php endif; ?>
 
     <!-- JEFE WIDGETS -->
-    <?php if($rol == 'jefe'): ?>
+    <?php if(in_array($rol, ['jefe', 'subjefe'])): ?>
         <div class="stat-card" style="border-left: 4px solid var(--accent);">
             <span class="stat-label">Personal Total</span>
             <div class="stat-value"><?= $cnt_personal ?></div>
@@ -265,7 +265,7 @@ if (in_array($rol, ['jefe', 'subjefe', 'supervisor'])) {
     <?php endif; ?>
 
     <!-- JEFE CHARTS -->
-    <?php if($rol == 'jefe'): ?>
+    <?php if(in_array($rol, ['jefe', 'subjefe'])): ?>
         <div class="card">
             <h3>📈 Evolución Ingresos</h3>
             <canvas id="chartFinanzas"></canvas>

@@ -11,6 +11,7 @@ $menu_items = [
     ["label" => "Errores", "tabla" => "registro_log", "icono" => "⚠️"],
     ["label" => "Usuarios Sistema", "tabla" => "usuario_sistema", "icono" => "🔐"],
     ["label" => "Clientes",     "tabla" => "cliente",     "icono" => "👥"],
+    ["label" => "Prospectos",     "tabla" => "prospectos",     "icono" => "👥"],
     ["label" => "Avisos",       "tabla" => "aviso",       "icono" => "🔔"],
     ["label" => "Servicios",    "tabla" => "servicio",    "icono" => "🛠️"],
     ["label" => "Pedidos",      "tabla" => "pedido",      "icono" => "🛒"],

@@ -48,18 +48,34 @@ $tabla = $_GET['tabla'];
                 echo "<input type='password' name='$campo' placeholder='Ingrese contraseña segura' required style='$inputStyle'>";
             }
             // CASO B: Foreign Key (termina en _id)
-            elseif (substr($campo, -3) == '_id') {
+            if (substr($campo, -3) == '_id') {
                 $tabla_ref = substr($campo, 0, -3);
                 
                 // Mapeo manual de excepciones comunes
                 if($tabla_ref == 'usuario') $tabla_ref = 'usuario_sistema';
                 if($tabla_ref == 'jefe') $tabla_ref = 'personal'; 
+
+                // CASO ESPECIAL: empleado_id (Asignacion)
+                if($campo == 'empleado_id') {
+                    // Si soy empleado, no puedo asignar. (Oculto o readonly)
+                    if($_SESSION['usuario_rol'] == 'empleado'){
+                        // Oculto, valor nulo o 0? Default NULL in DB.
+                        continue; 
+                    }
+                    $tabla_ref = 'usuario_sistema'; // Forzar fuente
+                }
                 
-                echo "<select name='$campo' required style='$inputStyle'>";
+                echo "<select name='$campo' style='$inputStyle'>";
                 echo "<option value=''>-- Seleccionar $tabla_ref --</option>";
                 
                 // Intentar buscar datos referencia
                 $sql_ref = "SELECT * FROM $tabla_ref LIMIT 100";
+                
+                // FILTRO SOLO EMPLEADOS
+                if($campo == 'empleado_id'){
+                    $sql_ref = "SELECT * FROM usuario_sistema WHERE rol = 'empleado' ORDER BY nombre_completo ASC";
+                }
+                
                 $res_ref = $conexion->query($sql_ref);
                 if($res_ref){
                    while($row_ref = $res_ref->fetch_assoc()){

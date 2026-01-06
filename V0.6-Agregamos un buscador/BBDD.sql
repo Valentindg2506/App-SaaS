@@ -127,3 +127,18 @@ INSERT INTO aviso (titulo, mensaje, alcance, usuario_id) VALUES
 ('Nota Privada', 'Recordar revisar mi reporte de gastos.', 'personal', 1); -- Asuming ID 1 is default admin/jefe
 
 ALTER TABLE usuario_sistema ADD COLUMN debe_cambiar_password BOOLEAN DEFAULT 1;
+
+CREATE TABLE prospectos (
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    nombre VARCHAR(100) NOT NULL, 
+    apellido VARCHAR(100) NOT NULL, 
+    email VARCHAR(100) NOT NULL, 
+    telefono VARCHAR(20) NOT NULL, 
+    direccion VARCHAR(255) NOT NULL, 
+    empresa VARCHAR(100) NOT NULL, 
+    comentarios TEXT, 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE cliente ADD COLUMN empleado_id INT DEFAULT NULL; 
+ALTER TABLE prospectos ADD COLUMN empleado_id INT DEFAULT NULL;

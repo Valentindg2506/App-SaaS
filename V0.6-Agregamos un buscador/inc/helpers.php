@@ -29,6 +29,7 @@ function format_column_name($name) {
         'tipo' => 'Tipo',
         'mensaje' => 'Mensaje',
         'fecha' => 'Fecha',
+        'empleado_id' => 'Empleado Asignado',
     ];
     
     if(isset($map[$name])) {
