@@ -1,0 +1,10 @@
+body,html{
+	background:#FF4500;
+}
+
+header,main,footer{
+	width:1100px;
+	background:white;
+	padding:20px;
+	margin:auto;
+}
