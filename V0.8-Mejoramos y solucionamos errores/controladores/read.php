@@ -43,15 +43,6 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
     }
 }
 
-// B. Filtro de Privacidad (Empleados)
-if(isset($_SESSION['usuario_rol']) && $_SESSION['usuario_rol'] == 'empleado'){
-    // Tablas restringidas
-    if(in_array($tabla, ['cliente', 'prospectos'])){
-        $my_id = $_SESSION['usuario_id'];
-        $conditions[] = "empleado_id = '$my_id'"; 
-    }
-}
-
 // Construir WHERE final
 $whereClause = "";
 if(count($conditions) > 0){
