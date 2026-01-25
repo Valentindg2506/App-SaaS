@@ -1,4 +1,6 @@
+CREATE DATABASE appsaas;
 
+USE appsaas;
 
 CREATE TABLE cliente (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -144,7 +146,7 @@ CREATE TABLE prospectos (
 
 ALTER TABLE cliente ADD COLUMN empleado_id INT DEFAULT NULL; 
 ALTER TABLE prospectos ADD COLUMN empleado_id INT DEFAULT NULL;
-ALTER TABLE clientes ADD COLUMN estado VARCHAR(50) DEFAULT 'Prospecto';
+ALTER TABLE cliente ADD COLUMN estado VARCHAR(50) DEFAULT 'Prospecto';
 ALTER TABLE cliente ADD COLUMN fase VARCHAR(50) DEFAULT 'Nuevo';
 
 
