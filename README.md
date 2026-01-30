@@ -4,7 +4,7 @@ Bienvenido al repositorio de **App-SaaS**, una aplicación web de gestión empre
 
 ## 🚀 Características Principales
 
-El sistema ha evolucionado a través de varias versiones hasta la actual (**V0.6**), incorporando las siguientes funcionalidades:
+El sistema ha evolucionado a través de varias versiones hasta la actual (**V0.9**), incorporando las siguientes funcionalidades:
 
 ### 👥 Gestión de Usuarios y Roles
 - **Sistema de Roles:** Acceso diferenciado para Admin, Jefe, Subjefe, Supervisor y Empleado.
@@ -14,7 +14,8 @@ El sistema ha evolucionado a través de varias versiones hasta la actual (**V0.6
 ### 💼 CRM y Ventas
 - **Clientes:** Gestión completa de base de datos de clientes.
 - **Prospectos:** Módulo para clientes potenciales con opción de **conversión a cliente** en un clic.
-- **Asignación:** Vinculación de empleados específicos a clientes y prospectos.
+- **Asignación:** Vinculación de empleados específicos a clientes y prospectos. Cada cliente y prospecto debe tener un empleado asignado.
+- **Ventana de Emergencia:** Opciones rápidas para gestión crítica en clientes y prospectos.
 
 ### 💰 Facturación y Operaciones
 - **Servicios:** Catálogo de servicios ofrecidos con precios.
@@ -28,6 +29,7 @@ El sistema ha evolucionado a través de varias versiones hasta la actual (**V0.6
 - **Avisos:** Sistema de notificaciones globales y privadas para usuarios.
 - **Logs del Sistema:** Registro de auditoría para errores y actividades críticas.
 - **Buscador:** Funcionalidad de búsqueda transverso (añadido en V0.6).
+- **Kanban:** Tablero visual para la gestión de tareas y seguimiento de flujos de trabajo (V0.7).
 
 ### 🎨 Personalización
 - **Temas Dinámicos:** Configuración de colores para el menú y el cuerpo de la aplicación, con ajuste automático de contraste y persistencia en base de datos.
@@ -37,11 +39,11 @@ El sistema ha evolucionado a través de varias versiones hasta la actual (**V0.6
 
 ## 📂 Estructura del Proyecto
 
-El proyecto está organizado en versiones incrementales. La versión más estable y completa es **`V0.6-Agregamos un buscador`**.
+El proyecto está organizado en versiones incrementales. La versión más estable y completa es **`V0.9-Mejoramos la seccion de clientes`**.
 
 ```text
 App-SaaS/
-├── V0.6-Agregamos un buscador/  <-- VERSIÓN RECOMENDADA
+├── V0.9-Mejoramos la seccion de clientes/  <-- VERSIÓN RECOMENDADA
 │   ├── BBDD.sql                 # Esquema de la Base de Datos
 │   ├── index.php                # Punto de entrada y enrutador principal
 │   ├── login.php                # Página de inicio de sesión
@@ -77,3 +79,6 @@ App-SaaS/
 - **V0.4 - Hasheamos:** Seguridad mejorada en contraseñas.
 - **V0.5 - Password:** Flujo de cambio de contraseña obligatorio.
 - **V0.6 - Buscador:** Implementación de búsqueda global y mejoras en prospectos.
+- **V0.7 - Kanban:** Implementación de tablero Kanban para la gestión de tareas.
+- **V0.8 - Mejoras y Errores:** Optimización general y corrección de bugs.
+- **V0.9 - Clientes Mejorado:** Mejoras en la asignación de empleados a clientes/prospectos y nuevas opciones de gestión rápida.
