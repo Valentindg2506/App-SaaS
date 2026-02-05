@@ -11,12 +11,11 @@ $menu_items = [
     ["label" => "Errores",          "tabla" => "registro_log",    "icono" => "⚠️"],
     ["label" => "Usuarios Sistema", "tabla" => "usuario_sistema", "icono" => "🔐"],
     ["label" => "Clientes",         "tabla" => "cliente",         "icono" => "👥"],
-    ["label" => "Prospectos",       "tabla" => "prospectos",      "icono" => "🎯"],
     
     // --- NUEVO ITEM KANBAN (Vinculado a permiso de cliente) ---
-    ["label" => "Tablero Clientes", "operacion" => "kanban",      "icono" => "📋"],
+    ["label" => "Prospectos", "operacion" => "kanban",      "icono" => "📋"],
     
-    ["label" => "Avisos",           "tabla" => "aviso",           "icono" => "🔔"],
+    ["label" => "Recordatorios",           "tabla" => "aviso",           "icono" => "🔔"],
     ["label" => "Servicios",        "tabla" => "servicio",        "icono" => "🛠️"],
     ["label" => "Pedidos",          "tabla" => "pedido",          "icono" => "🛒"],
     ["label" => "Facturas",         "tabla" => "factura",         "icono" => "📄"],

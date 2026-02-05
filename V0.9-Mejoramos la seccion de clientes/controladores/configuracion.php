@@ -1,9 +1,4 @@
 <?php
-	// SEGURIDAD: Solo Admin y Jefe
-	if(!in_array($_SESSION['usuario_rol'], ['admin', 'jefe'])){
-		echo "<div class='alert alert-danger'>Acceso Denegado.</div>";
-		exit;
-	}
 
 	// 1. AUTO-REPARACIÓN (Simplified)
 	$conexion->query("CREATE TABLE IF NOT EXISTS configuracion (id INT PRIMARY KEY, color_menu VARCHAR(50), color_body VARCHAR(50), color_texto_menu VARCHAR(50), color_texto_body VARCHAR(50))");

@@ -1,4 +1,4 @@
-Cada cliente y cada prospecto se le tiene que asiganar a un empleado. ✅️
+ada cliente y cada prospecto se le tiene que asiganar a un empleado. ✅️
 
 Agregar opcion de vent emerg en clientes y prospectos. ✅️
 

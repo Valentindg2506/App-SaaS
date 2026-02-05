@@ -52,7 +52,7 @@ include "inc/config_roles.php"; // Load permission logic
     
     <nav>
         <div class="nav-header">
-            <span>⚡ App SaaS</span>
+            <span>TinoProp</span>
         </div>
         <ul class="nav-links">
             <li><a href="index.php" class="<?= !isset($_GET['operacion']) && !isset($_GET['tabla']) ? 'activo' : '' ?>">🏠 Dashboard</a></li>
@@ -99,6 +99,7 @@ include "inc/config_roles.php"; // Load permission logic
 				include "controladores/ver_cliente.php";    ## NUEVO ##
             } else if($_GET['operacion'] == "procesa_editar"){
                 include "controladores/procesa_editar.php";
+            } else if($_GET['operacion'] == "configuracion"){
                 include "controladores/configuracion.php";
             } else if($_GET['operacion'] == "convertir_prospecto"){
                 include "controladores/convertir_prospecto.php";

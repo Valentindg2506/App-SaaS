@@ -6,7 +6,7 @@
  */
 $permisos_roles = [
     'admin'      => ['*'], // Acceso total
-    'jefe'       => ['cliente', 'pedido', 'factura', 'personal', 'configuracion', 'servicio', 'aviso','prospectos','kanban'], // Dueño ve casi todo
+    'jefe'       => ['cliente', 'pedido', 'factura', 'personal','configuracion', 'servicio', 'aviso','prospectos','kanban'], // Dueño ve casi todo
     'subjefe'    => ['cliente', 'pedido', 'servicio', 'personal', 'factura','prospectos','kanban'],
     'supervisor' => ['cliente', 'pedido', 'aviso', 'servicio', 'personal','prospectos','kanban'],
     'empleado'   => ['cliente','aviso', 'servicio', 'pedido','prospectos','kanban'], // Acceso limitado

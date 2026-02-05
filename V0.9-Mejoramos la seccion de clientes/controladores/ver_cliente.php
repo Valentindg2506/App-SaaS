@@ -322,7 +322,7 @@ $historial = $conexion->query("
                 <div class="input-tabs">
                     <label class="tab-label">
                         <input type="radio" name="tipo_nota" value="nota" checked> 
-                        <span style="color:#ca8a04">📝 Nota Interna</span>
+                        <span style="color:#ca8a04">📝 Notas</span>
                     </label>
                     <label class="tab-label">
                         <input type="radio" name="tipo_nota" value="conversacion"> 
